@@ -1,24 +1,33 @@
 package model;
 
+import java.util.Objects;
+
 public class Carro {
     private String cor;
     private String marca;
     private Integer ano;
     private Boolean ligado;
     private Integer velocidadeAtual;
+    private Integer velocidadeMaxima;
 
     // Os testes mostrar a presença de erros e não sua ausencia
     public Carro() {
         this.ligado = false;
         this.velocidadeAtual = 0;
+        this.velocidadeMaxima = 100;
     }
 
-    public Carro(String cor, String marca, Integer ano) {
-        this.cor = cor;
-        this.marca = marca;
-        this.ano = ano;
+    public Carro(Integer velocidadeMaxima) {
+        this.velocidadeMaxima = velocidadeMaxima;
         this.ligado = false;
         this.velocidadeAtual = 0;
+    }
+
+    public Carro(String marca) {
+        this.marca = marca;
+        this.ligado = false;
+        this.velocidadeAtual = 0;
+        this.velocidadeMaxima = 100;
     }
 
     public String getCor() {
@@ -61,6 +70,14 @@ public class Carro {
         this.velocidadeAtual = velocidadeAtual;
     }
 
+    public Integer getVelocidadeMaxima() {
+        return velocidadeMaxima;
+    }
+
+    public void setVelocidadeMaxima(Integer velocidadeMaxima) {
+        this.velocidadeMaxima = velocidadeMaxima;
+    }
+
     @Override
     public String toString() {
         return "Carro{" +
@@ -70,5 +87,18 @@ public class Carro {
                 ", ligado=" + ligado +
                 ", velocidadeAtual=" + velocidadeAtual +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Carro)) return false;
+        Carro carro = (Carro) o;
+        return marca.equals(carro.marca);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(marca);
     }
 }
